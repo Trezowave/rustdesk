@@ -116,6 +116,7 @@ class _RemotePageState extends State<RemotePage> with WidgetsBindingObserver {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
       
       gFFI.recordingModel
           .updateStatus(bind.sessionGetIsRecording(sessionId: gFFI.sessionId));
@@ -900,7 +901,7 @@ class _KeyHelpToolsState extends State<KeyHelpTools> {
         inputModel.shift ||
         inputModel.command;
 
-    if (!_pin && !hasModifierOn && !widget.requestShow) {
+    if (!_pin && !widget.keyboardIsVisible) {
       gFFI.cursorModel
           .keyHelpToolsVisibilityChanged(null, widget.keyboardIsVisible);
       return Offstage();
